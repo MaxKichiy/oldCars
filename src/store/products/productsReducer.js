@@ -10,7 +10,9 @@ const initialState = [];
 export const productsReducer =(state = initialState, action) => {
   switch (action.type) {
     case SET_PRODUCTS:
-      return [...state,...action.payload]
+      return [...action.payload]
+    case DELETE_PRODUCT:
+      return state.filter(product => product._id !== action.payload)
     default:
       break
   }

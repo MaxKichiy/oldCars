@@ -1,6 +1,7 @@
 import { AppBar, Button, Typography } from '@material-ui/core'
 import { Popup } from 'components/Popup'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import useStyles from './Header.styled'
 
@@ -11,7 +12,7 @@ const Header = () => {
   return (
     <AppBar className={classes.header}>
       <div className={classes.headerContainer}>
-      <Typography variant='h4'>OCars</Typography>
+      <Link to='/'><Typography className={classes.pageLogo} variant='h4'>OCars</Typography></Link>
       <ul className={classes.headerNav}>
         <li className={classes.navItem}>Product</li>
         <li className={classes.navItem}>Contacts</li>

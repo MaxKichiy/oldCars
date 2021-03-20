@@ -34,18 +34,16 @@ const Popup = ({
         <DialogActions className={classes.buttonBlock}>
           <Button
             className={classes.cancelButton}
-            title='Cancel'
             variant="contained"
-            type="submit"
+            color='secondary'
             onClick={handleClose}
-          />
+          >Cancel</Button>
           <Button
             className={classes.primaryButton}
-            title={primaryButtonTitle}
             variant="contained"
             type="submit"
             onClick={handleSubmit}
-          />
+          >{primaryButtonTitle}</Button>
         </DialogActions>
       </DialogContent>
     </Dialog>

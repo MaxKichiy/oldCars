@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import useStyles from './CardProduct.styled'
 
-const Products = ({count, name, imageUrl, description,id}) => {
+const Products = ({count, name, imageUrl, description,id,deleteHandler}) => {
 
   const classes = useStyles()
 
@@ -27,8 +27,7 @@ const Products = ({count, name, imageUrl, description,id}) => {
         <Link style={{width: '100%'}} to={'products/' + id}>
        <Button variant='contained' color='primary' fullWidth>Details</Button>
        </Link>
-       <Button className={classes.closeBtn} color='secondary' fullWidth>&times;</Button>
-       
+       <Button className={classes.closeBtn} color='secondary' fullWidth onClick={() => deleteHandler(id)}>&times;</Button>
       </CardActions>
       </Card>
   )

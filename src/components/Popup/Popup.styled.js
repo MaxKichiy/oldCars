@@ -4,6 +4,7 @@ export const useStyles = makeStyles(({ palette }) => ({
   dialogFrame: {
     backdropFilter: 'blur(3px)',
     '& .MuiPaper-root': {
+      backgroundColor:palette.header,
       borderRadius: 0,
       boxShadow: '0px 1px 2px rgba(0,0,0,0.5), 0px 1px 15px rgba(0,0,0,0.5), 0px 1px 15px rgba(0,0,0,0.5);',
     },

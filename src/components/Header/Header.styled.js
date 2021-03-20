@@ -14,6 +14,9 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
     justifyContent:'space-between',
     alignItems:'center'
   },
+  pageLogo:{
+    color: palette.white,
+  },
   headerNav: {
     display:'flex',
     width:'40%',
