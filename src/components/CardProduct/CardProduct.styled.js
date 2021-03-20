@@ -15,6 +15,15 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
     marginTop:10,
     padding:'5px 11px',
   },
+  descriptionWrapper: {
+    maxHeight: 40,
+    overflow:'hidden',
+  },
+  media:{
+    height:167,
+    maxHeight:167,
+    objectFit:'fill',
+  },
   buttonWrapper:{
     marginTop:10,
     paddingTop:0,
