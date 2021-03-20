@@ -1,33 +1,39 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Paper, Typography } from '@material-ui/core'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import {  useParams } from 'react-router'
 
 import useStyles from './ProductDetails.styled'
 
 const ProductDetails = () => {
 
+  const params = useParams();
+  const currentId = params.id
+
+  const products = useSelector(state => state.products)
+  const currentProduct = products.filter(product => product._id === currentId)[0];
+  console.log("🚀 ~ file: ProductDetails.js ~ line 16 ~ ProductDetails ~ currentProduct", currentProduct)
   const classes = useStyles()
 
   return (
-      <Card className={classes.product}>
+      <Paper className={classes.productsContainer}>
       <CardMedia
       component="img"
         className={classes.media}
-        image="https://images.unsplash.com/photo-1610479415732-10db2f23cc62?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-        title="Paella dish"
+        image={currentProduct.imageUrl}
+        title={currentProduct.name}
       />
       <CardContent className={classes.contentWrapper}>
-        <Typography variant="h5">Name</Typography>
+        <Typography variant="h5">{currentProduct.name}</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-        mollit laborum tempor ex consequat proident deserunt duis dolor id
+        {currentProduct.description}
         </Typography>
-        <Typography>120</Typography>
+        <Typography>Count - {currentProduct.count}</Typography>
       </CardContent>
       <CardActions className={classes.buttonWrapper}>
-       <Button variant='contained' color='primary' fullWidth>Details</Button>
-       <Button className={classes.closeBtn} color='secondary' fullWidth>&times;</Button>
-       
+       <Button variant='contained' color='primary' fullWidth>Edit</Button>
       </CardActions>
-      </Card>
+      </Paper>
   )
 }
 

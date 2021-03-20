@@ -1,9 +1,10 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Paper, Typography } from '@material-ui/core'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import useStyles from './CardProduct.styled'
 
-const Products = ({count, name, imageUrl, description,}) => {
+const Products = ({count, name, imageUrl, description,id}) => {
 
   const classes = useStyles()
 
@@ -23,7 +24,9 @@ const Products = ({count, name, imageUrl, description,}) => {
         <Typography>Amount - {count}</Typography>
       </CardContent>
       <CardActions className={classes.buttonWrapper}>
+        <Link style={{width: '100%'}} to={'products/' + id}>
        <Button variant='contained' color='primary' fullWidth>Details</Button>
+       </Link>
        <Button className={classes.closeBtn} color='secondary' fullWidth>&times;</Button>
        
       </CardActions>

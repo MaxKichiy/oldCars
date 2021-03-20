@@ -24,7 +24,7 @@ console.log("🚀 ~ file: Products.js ~ line 25 ~ Products ~ state", state)
 
   return (
       <Paper elevation={3} className={classes.productsContainer}>
-     {state && state.map(({count, name, imageUrl, description,_id}) => (<CardProduct key={_id} count={count} name={name} imageUrl={imageUrl} description={description}/>))}
+     {state && state.map(({count, name, imageUrl, description,_id}) => (<CardProduct id={_id} key={_id} count={count} name={name} imageUrl={imageUrl} description={description}/>))}
     </Paper>
     
   )
