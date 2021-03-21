@@ -4,7 +4,7 @@ import { CardProduct } from 'components/CardProduct'
 import { Popup } from 'components/Popup'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {fetchingProducts}  from 'store/products/productsActions'
+import { fetchingProducts}  from 'store/products/productsActions'
 import {deleteItem}  from 'store/products/productsActions'
 
 

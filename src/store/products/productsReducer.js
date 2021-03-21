@@ -1,7 +1,7 @@
 import { v4 as generateId } from 'uuid';
 
 import {
-  ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT,SET_PRODUCTS
+  ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT,SET_PRODUCTS,
 } from './productsTypes';
 
 const initialState = [];

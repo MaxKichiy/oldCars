@@ -18,6 +18,14 @@ export const deleteItem = (data) => {
   }
 }
 
+// export const getContacts = (data) => {
+//   return {
+//     type: actionTypes.DELETE_PRODUCT,
+//     payload: data,
+//   }
+// }
+
+
 export const fetchingProducts = () => async (dispatch) => {
   axios.get(baseURL + '/oldCars.json').then(({ data }) => dispatch(setProducts(data)))
     .catch((err) => alert('Some erros'));

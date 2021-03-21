@@ -10,9 +10,15 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
     display:'flex',
     flexWrap: 'wrap',
     justifyContent:'space-between',
-    alignItems:'center',
+    // alignItems:'flex-start',
     rowGap:20,
   },
+  media:{
+    width:'50%',
+    maxHeight:'450px',
+    objectFit:'fill',
+  },
+  
 }));
 
 export default useStyles;
