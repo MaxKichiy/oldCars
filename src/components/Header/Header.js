@@ -17,11 +17,10 @@ const Header = () => {
           <Typography variant="h4">OCars</Typography>
         </Link>
         <ul className={classes.headerNav}>
-          <li className={classes.navItem}>Product</li>
           <li className={classes.navItem}>Contacts</li>
         </ul>
         <Button variant="contained" color="primary" onClick={() => setIsPopupActive(prev => !prev)}>
-          Add new
+          New Product
         </Button>
         <ProductForm
           onClose={() => setIsPopupActive(prev => !prev)}

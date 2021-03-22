@@ -11,7 +11,6 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import { useFetch } from 'api/useFetch';
 import { Comments } from 'components/Comments';
 import { Popup } from 'components/Popup';
 import { Preloader } from 'components/Preloader';
@@ -50,24 +49,48 @@ const ProductDetails = () => {
 
   return (
     <Paper className={classes.productsContainer}>
-      <CardMedia
-        component="img"
-        className={classes.media}
-        image={currentProduct.imageUrl}
-        title={currentProduct.name}
-      />
-      <Comments comments={comments} productId={currentProduct._id} />
       <Paper elevation={0} className={classes.productDescription}>
-        <Typography variant="h2">{currentProduct.name}</Typography>
-        <Typography>Quantity - {currentProduct.count}</Typography>
-        <Typography>Weight - {currentProduct.weight}</Typography>
-        <Typography>Height - {currentProduct.size.height}</Typography>
-        <Typography>Width - {currentProduct.size.width}</Typography>
-        <Typography>{currentProduct.description}</Typography>
-        <Button variant="contained" color="primary" onClick={() => setIsPopupActive(true)}>
-          helelo
-        </Button>
+        <CardMedia
+          component="img"
+          className={classes.media}
+          image={currentProduct.imageUrl}
+          title={currentProduct.name}
+        />
+        <div className={classes.titleWrapper}>
+          <Typography className={classes.nameField} variant="h2">
+            {currentProduct.name}
+          </Typography>
+          <Button variant="contained" color="secondary" onClick={() => setIsPopupActive(true)}>
+            Edit
+          </Button>
+        </div>
+        <List className={classes.list}>
+          <ListItem alignItems="flex-start" divider className={classes.listItem}>
+            <Typography>
+              Quantity <span>{currentProduct.count}</span>
+            </Typography>
+          </ListItem>
+          <ListItem alignItems="flex-start" divider className={classes.listItem}>
+            <Typography>
+              Weight <span>{currentProduct.weight}</span>
+            </Typography>
+          </ListItem>
+          <ListItem alignItems="flex-start" divider className={classes.listItem}>
+            <Typography>
+              Height <span>{currentProduct.size.height}</span>
+            </Typography>
+          </ListItem>
+          <ListItem alignItems="flex-start" divider className={classes.listItem}>
+            <Typography>
+              Width <span>{currentProduct.size.width}</span>
+            </Typography>
+          </ListItem>
+        </List>
+
+        <Typography className={classes.description}>{currentProduct.description}</Typography>
       </Paper>
+
+      <Comments comments={comments} productId={currentProduct._id} />
 
       <ProductForm
         currName={currentProduct.name}

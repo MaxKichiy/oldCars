@@ -1,4 +1,4 @@
-import { MenuItem, Paper, Select, Switch } from '@material-ui/core';
+import { FormControl, InputLabel, MenuItem, Paper, Select, Switch } from '@material-ui/core';
 import { useFetch } from 'api/useFetch';
 import { CardProduct } from 'components/CardProduct';
 import { Popup } from 'components/Popup';
@@ -43,8 +43,15 @@ const Products = ({ products }) => {
 
   return (
     <Paper elevation={3} className={classes.productsContainer}>
-      <div style={{ backgroundColor: '#fff' }}>
-        <Select value={sortType} onChange={onSortHandle} className={classes.sortSelector}>
+      <FormControl className={classes.sortWrapper}>
+        {' '}
+        <InputLabel id="sortSelector">Sort By</InputLabel>
+        <Select
+          labelId="sortSelector"
+          value={sortType}
+          onChange={onSortHandle}
+          className={classes.sortSelector}
+        >
           <MenuItem style={{ backgroundColor: '#fff' }} value={'name'}>
             Name
           </MenuItem>
@@ -52,7 +59,7 @@ const Products = ({ products }) => {
             Quantity
           </MenuItem>
         </Select>
-      </div>
+      </FormControl>
 
       {products &&
         products.map(({ count, name, imageUrl, description, _id }) => (

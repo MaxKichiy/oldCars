@@ -13,11 +13,12 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
     alignItems: 'center',
     rowGap: 20,
   },
-  sortSelector: {
+  sortWrapper: {
+    top: 70,
+    left: '7%',
     position: 'absolute',
-    top: 75,
-    zIndex: 1,
   },
+  sortSelector: {},
 }));
 
 export default useStyles;

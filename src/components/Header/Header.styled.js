@@ -16,12 +16,11 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
   },
   pageLogo: {
     color: palette.white,
-    flexGrow: 1,
   },
   headerNav: {
     display: 'flex',
-    width: 200,
-    marginRight: 40,
+    marginLeft: 'auto',
+    marginRight: 25,
     justifyContent: 'space-between',
   },
   navItem: {

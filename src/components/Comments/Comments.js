@@ -61,23 +61,23 @@ const Comments = ({ comments, productId }) => {
               ))}
           </List>
         )}
-
-        <form onSubmit={handleNewComment} className={classes.form} autoComplete="off">
-          <TextField
-            value={comment}
-            onChange={e => setComment(e.target.value)}
-            className={classes.newComment}
-            id="newComment"
-            label="New Comment"
-            variant="filled"
-            multiline
-            color="primary"
-          />
-          <Button type="submit" variant="contained" color="primary">
-            SEND
-          </Button>
-        </form>
       </Paper>
+
+      <form onSubmit={handleNewComment} className={classes.form} autoComplete="off">
+        <TextField
+          value={comment}
+          onChange={e => setComment(e.target.value)}
+          className={classes.newComment}
+          id="newComment"
+          label="New Comment"
+          variant="filled"
+          multiline
+          color="primary"
+        />
+        <Button type="submit" variant="contained" color="primary">
+          SEND
+        </Button>
+      </form>
     </div>
   );
 };
