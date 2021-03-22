@@ -1,4 +1,4 @@
-import { Paper } from '@material-ui/core';
+import { MenuItem, Paper, Select, Switch } from '@material-ui/core';
 import { useFetch } from 'api/useFetch';
 import { CardProduct } from 'components/CardProduct';
 import { Popup } from 'components/Popup';
@@ -15,11 +15,23 @@ const Products = ({ products }) => {
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [productIdToRemove, setProductIdToRemove] = useState(null);
 
+  const [sortType, setSortType] = useState('name');
+
   const dispatch = useDispatch();
+
+  const sortFucntion = (arr, type) => {
+    return products.sort((a, b) => (a[type] > b[type] ? 1 : b[type] > a[type] ? -1 : 0));
+  };
+
+  console.log(sortFucntion(products, sortType));
 
   useEffect(() => {
     dispatch(setComments([]));
   }, []);
+
+  const onSortHandle = event => {
+    setSortType(event.target.value);
+  };
   const handleDelete = () => {
     dispatch(deleteProduct(productIdToRemove));
     setIsPopupActive(false);
@@ -32,6 +44,17 @@ const Products = ({ products }) => {
 
   return (
     <Paper elevation={3} className={classes.productsContainer}>
+      <div style={{ backgroundColor: '#fff' }}>
+        <Select value={sortType} onChange={onSortHandle} className={classes.sortSelector}>
+          <MenuItem style={{ backgroundColor: '#fff' }} value={'name'}>
+            Name
+          </MenuItem>
+          <MenuItem style={{ backgroundColor: '#fff' }} value={'count'}>
+            Quantity
+          </MenuItem>
+        </Select>
+      </div>
+
       {products &&
         products.map(({ count, name, imageUrl, description, _id }) => (
           <CardProduct
