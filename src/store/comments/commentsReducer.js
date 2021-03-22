@@ -11,10 +11,11 @@ export const commentsReducer =(state = initialState, action) => {
   switch (action.type) {
     case SET_COMMENTS:
       return [...action.payload]
-    case ADD_COMMENT:
-      return [...state, action.payload]
-    // case DELETE_PRODUCT:
-    //   return state.filter(product => product._id !== action.payload)
+    // case ADD_COMMENT:
+    //   console.log('hello');
+    //   return [...state, action.payload]
+    case DELETE_COMMENT:
+      return state.filter(comment => comment.id !== action.payload)
     default:
       break
   }

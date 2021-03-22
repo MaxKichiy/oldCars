@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 const baseURL = 'https://dummy-hooks.firebaseio.com/'
 
-export const useFetch = (url,query) => {
+export const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +12,7 @@ export const useFetch = (url,query) => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(baseURL + url +'.json' + query);
+        const response = await axios.get(baseURL + url +'.json');
 
         setData(response.data);
       } catch (error) {
@@ -22,7 +22,7 @@ export const useFetch = (url,query) => {
       }
     };
     fetchData();
-  }, [url,query]);
+  }, [url]);
 
   return { data, errors, isLoading };
 };

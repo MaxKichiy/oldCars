@@ -1,0 +1,12 @@
+const { makeStyles } = require('@material-ui/core');
+
+const useStyles = makeStyles(theme => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+    top: 64,
+    background: 'none',
+  },
+}));
+
+export default useStyles;

@@ -18,11 +18,24 @@ const addComment = (data) => {
   }
 }
 
+const removeComment = (data) => {
+  return {
+    type: actionTypes.DELETE_COMMENT,
+    payload: data,
+  }
+}
+
 export const fetchingComments = (id) => async (dispatch) => {
   axios.get(baseURL + `/oldCarsComments.json?orderBy="productId"&equalTo="${id}"&print=pretty`).then(({data}) => {
     dispatch(setComments(Object.values(data)))
   })
     .catch((err) => alert('Some erros'));
+};
+
+export const fetchRemoveComment = (id) => async (dispatch) => {
+  axios.get(baseURL + `/oldCarsComments.json?orderBy="id"&equalTo="${id}"&print=pretty`).then(({data}) => {
+   return  axios.delete(baseURL + `/oldCarsComments/${Object.keys(data)[0]}.json`)
+  }).then((response)=> dispatch(removeComment(id))).catch(err =>  alert('Some erros'))
 };
 
 export const addNewComment = (text, prodId) => async (dispatch) => {

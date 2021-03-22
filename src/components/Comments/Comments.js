@@ -3,7 +3,7 @@ import moment from 'moment'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addNewComment } from 'store/comments/commentsActions'
+import { addNewComment, fetchRemoveComment } from 'store/comments/commentsActions'
 import useStyles from './Comments.styled'
 
 
@@ -15,9 +15,15 @@ const Comments = ({comments}) => {
 
   const handleNewComment = (event) => {
     event.preventDefault();
-    dispatch(addNewComment(comment, comments[0].productId))
+    if(comment) dispatch(addNewComment(comment, comments[0].productId))
     setComment('')
   }
+
+  const handleRemoveComponent = (id) => {
+    dispatch(fetchRemoveComment(id))
+  }
+
+
 
   return (
     <Paper className={classes.commentsWrapper}>
@@ -31,6 +37,7 @@ const Comments = ({comments}) => {
           </React.Fragment>
         }
       />
+      <Button onClick={()=>handleRemoveComponent(comment.id)}>&times;</Button>
     </ListItem>)}
     </List>
 
