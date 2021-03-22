@@ -18,6 +18,13 @@ const deleteItem = data => {
   };
 };
 
+const editItem = data => {
+  return {
+    type: actionTypes.EDIT_PRODUCT,
+    payload: data,
+  };
+};
+
 // export const getContacts = (data) => {
 //   return {
 //     type: actionTypes.DELETE_PRODUCT,
@@ -46,13 +53,8 @@ export const deleteProduct = id => async dispatch => {
       .then(response => dispatch(deleteItem(id)))
       .catch(err => alert('Some erros'));
   });
+};
 
-  // axios.get(baseURL + `/oldCars.json?orderBy="_id"&equalTo="${id}"`).then(({data}) => {
-  //   const commentsList = Object.values(data)[0].comments
-  //   commentsList.forEach(comment => {
-  //   fetchRemoveComment(comment)
-  //   });
-  //  }).then((response)=> console.log(response)).catch(err =>  alert('Some erros'))
-  //  }).then((response)=> dispatch(deleteItem(id))).catch(err =>  alert('Some erros'))
-  // return  axios.delete(baseURL + `/oldCarsComments/${Object.keys(data)[0]}.json`)
+export const fetchEditProduct = data => async dispatch => {
+  dispatch(editItem(data));
 };

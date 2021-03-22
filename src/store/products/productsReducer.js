@@ -20,6 +20,10 @@ export const productsReducer = (state = initialState, action) => {
       const filtered = prod.comments.filter(comment => comment !== action.payload.id);
       prod.comments = filtered;
       return state;
+    case EDIT_PRODUCT:
+      const prodIndex = state.findIndex(product => product._id === action.payload._id);
+      state[prodIndex] = action.payload;
+      return state;
     default:
       break;
   }

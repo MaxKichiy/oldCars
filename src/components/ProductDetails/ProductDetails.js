@@ -30,6 +30,9 @@ const ProductDetails = ({ comments, products }) => {
 
   const [isPopupActive, setIsPopupActive] = useState(false);
 
+  const handleClosePopup = () => {
+    setIsPopupActive(prev => !prev);
+  };
   useEffect(() => {
     dispatch(fetchingComments(currentId));
   }, []);
@@ -56,24 +59,23 @@ const ProductDetails = ({ comments, products }) => {
         <Typography>Height - {currentProduct.size.height}</Typography>
         <Typography>Width - {currentProduct.size.width}</Typography>
         <Typography>{currentProduct.description}</Typography>
-        <Button onClick={() => setIsPopupActive(true)}>helelo</Button>
+        <Button variant="contained" color="primary" onClick={() => setIsPopupActive(true)}>
+          helelo
+        </Button>
       </Paper>
-      <Popup
-        title="New Product"
-        isOpen={isPopupActive}
-        primaryButtonTitle="Edit"
-        handleClose={() => setIsPopupActive(false)}
-      >
-        <ProductForm
-          currName={currentProduct.name}
-          currImage={currentProduct.imageUrl}
-          currDescription={currentProduct.description}
-          currCount={currentProduct.count}
-          currWidth={currentProduct.size.width}
-          currHeight={currentProduct.size.height}
-          currWeight={currentProduct.weight}
-        />
-      </Popup>
+
+      <ProductForm
+        currName={currentProduct.name}
+        currImage={currentProduct.imageUrl}
+        currDescription={currentProduct.description}
+        currCount={currentProduct.count}
+        currWidth={currentProduct.size.width}
+        currHeight={currentProduct.size.height}
+        currWeight={currentProduct.weight}
+        onClose={handleClosePopup}
+        isPopupActive={isPopupActive}
+        _id={currentProduct._id}
+      />
     </Paper>
   );
 };
