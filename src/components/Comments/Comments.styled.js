@@ -1,19 +1,29 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
-  commentsWrapper:{
+  wrapper: {
     width: '49%',
-    maxHeight:'450px',
-    backgroundColor:'#cecece',
-    overflowY:'scroll',
+    position: 'relative',
   },
-  form:{
+  commentsWrapper: {
+    minHeight: '450px',
+    maxHeight: '450px',
+    backgroundColor: '#cecece',
+    overflowY: 'auto',
+  },
+  form: {
     width: '100%',
-    display:'flex',
+    display: 'flex',
+    position: 'absolute',
+    bottom: 0,
   },
-  newComment:{
-    flexGrow:'1',
-  }
+  newComment: {
+    flexGrow: '1',
+  },
+  listItem: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 export default useStyles;
