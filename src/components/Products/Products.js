@@ -22,8 +22,7 @@ const Products = ({ products }) => {
   const sortFucntion = (arr, type) => {
     return products.sort((a, b) => (a[type] > b[type] ? 1 : b[type] > a[type] ? -1 : 0));
   };
-
-  console.log(sortFucntion(products, sortType));
+  sortFucntion(products, sortType);
 
   useEffect(() => {
     dispatch(setComments([]));
