@@ -2,44 +2,52 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
   product: {
-    position:'relative',
-    height:350,
-    width:250,
+    position: 'relative',
+    height: 350,
+    width: 250,
     '&:hover': {
-      '& $closeBtn':{
-        display:'block',
-      }
-    }
+      '& $closeBtn': {
+        display: 'block',
+      },
+    },
   },
-  contentWrapper:{
-    marginTop:10,
-    padding:'5px 11px',
+  contentWrapper: {
+    marginTop: 10,
+    padding: '5px 11px',
   },
   descriptionWrapper: {
     maxHeight: 40,
-    overflow:'hidden',
+    overflow: 'hidden',
   },
-  media:{
-    height:167,
-    maxHeight:167,
-    objectFit:'fill',
+  media: {
+    height: 167,
+    maxHeight: 167,
+    objectFit: 'fill',
   },
-  buttonWrapper:{
-    marginTop:10,
-    paddingTop:0,
+  buttonWrapper: {
+    marginTop: 10,
+    paddingTop: 0,
   },
-  closeBtn:{
-    padding:0,
-    display:'none',
-    position:'absolute',
-    top:0,
-    right:0,
-    fontSize:30,
-    width:10,
-    backgroundColor:'rgba(0,0,0,0.2)',
+  quantity: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    '& span': {
+      fontWeight: 'bold',
+    },
+  },
+  closeBtn: {
+    padding: 0,
+    display: 'none',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    fontSize: 30,
+    width: 10,
+    backgroundColor: 'rgba(0,0,0,0.2)',
     '&:hover': {
-    backgroundColor:'rgba(0,0,0,0.7)',
-    }
+      backgroundColor: 'rgba(0,0,0,0.7)',
+    },
   },
 }));
 
