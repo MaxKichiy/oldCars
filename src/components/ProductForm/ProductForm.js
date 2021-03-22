@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import useStyles from './ProductForm.styled';
 import { v4 as uuidv4 } from 'uuid';
 import { Popup } from 'components/Popup';
-import { fetchEditProduct } from 'store/products/productsActions';
+import { fetchAddProduct, fetchEditProduct } from 'store/products/productsActions';
 
 const ProductForm = ({
   currName,
@@ -33,14 +33,15 @@ const ProductForm = ({
   _id,
   onClose,
   isPopupActive,
+  buttonTitle,
 }) => {
-  const [name, setName] = useState('' || currName);
-  const [imageUrl, setImageUrl] = useState('' || currImage);
-  const [description, setDescription] = useState('' || currDescription);
-  const [width, setWidth] = useState('' || currWidth);
-  const [height, setHeight] = useState('' || currHeight);
-  const [weight, setWeight] = useState('' || currWeight);
-  const [count, setCount] = useState('' || currCount);
+  const [name, setName] = useState(currName || '');
+  const [imageUrl, setImageUrl] = useState(currImage || '');
+  const [description, setDescription] = useState(currDescription || '');
+  const [width, setWidth] = useState(currWidth || '');
+  const [height, setHeight] = useState(currHeight || '');
+  const [weight, setWeight] = useState(currWeight || '');
+  const [count, setCount] = useState(currCount || '');
 
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -61,26 +62,38 @@ const ProductForm = ({
       },
       comments: comments || [],
     };
-
-    dispatch(fetchEditProduct(newProduct));
-    onClose();
+    if (count && description && imageUrl && name && weight && width && height) {
+      if (buttonTitle === 'Add') {
+        dispatch(fetchAddProduct(newProduct));
+      } else {
+        dispatch(fetchEditProduct(newProduct));
+      }
+      onClose();
+    }
   };
 
   return (
     <Popup
       title="Edit Product"
       isOpen={isPopupActive}
-      primaryButtonTitle="Edit"
+      primaryButtonTitle={buttonTitle}
       handleClose={onClose}
       handleSubmit={formHandler}
     >
       <form>
-        <TextField id="name" label="Name" value={name} onChange={e => setName(e.target.value)} />
+        <TextField
+          id="name"
+          label="Name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          required
+        />
         <TextField
           id="imageUrl"
           label="ImageUrl"
           value={imageUrl}
           onChange={e => setImageUrl(e.target.value)}
+          required
         />
         <TextField
           id="description"
@@ -88,6 +101,7 @@ const ProductForm = ({
           multiline
           value={description}
           onChange={e => setDescription(e.target.value)}
+          required
         />
         <TextField
           id="width"
@@ -95,6 +109,7 @@ const ProductForm = ({
           value={width}
           type="number"
           onChange={e => setWidth(e.target.value)}
+          required
         />
         <TextField
           id="height"
@@ -102,6 +117,7 @@ const ProductForm = ({
           value={height}
           type="number"
           onChange={e => setHeight(e.target.value)}
+          required
         />
         <TextField
           id="weight"
@@ -109,6 +125,7 @@ const ProductForm = ({
           value={weight}
           type="number"
           onChange={e => setWeight(e.target.value)}
+          required
         />
         <TextField
           id="count"
@@ -116,6 +133,7 @@ const ProductForm = ({
           value={count}
           type="number"
           onChange={e => setCount(e.target.value)}
+          required
         />
       </form>
     </Popup>

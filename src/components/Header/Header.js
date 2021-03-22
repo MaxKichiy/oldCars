@@ -9,6 +9,7 @@ import useStyles from './Header.styled';
 const Header = () => {
   const classes = useStyles();
   const [isPopupActive, setIsPopupActive] = useState(false);
+
   return (
     <AppBar className={classes.header}>
       <div className={classes.headerContainer}>
@@ -30,7 +31,11 @@ const Header = () => {
             </Button>
           </li>
         </ul>
-        <ProductForm isPopupActive />
+        <ProductForm
+          onClose={() => setIsPopupActive(prev => !prev)}
+          isPopupActive={isPopupActive}
+          buttonTitle="Add"
+        />
       </div>
     </AppBar>
   );

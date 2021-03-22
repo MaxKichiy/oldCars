@@ -11,6 +11,8 @@ export const productsReducer = (state = initialState, action) => {
       return [...action.payload].filter(el => el !== null);
     case DELETE_PRODUCT:
       return state.filter(product => product._id !== action.payload);
+    case ADD_PRODUCT:
+      return [...state, action.payload];
     case ADD_COMMENT:
       const product = state.find(el => el._id === action.payload.productId);
       product.comments

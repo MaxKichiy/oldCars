@@ -81,6 +81,7 @@ const ProductDetails = () => {
         isPopupActive={isPopupActive}
         _id={currentProduct._id}
         comments={currentProduct.comments}
+        buttonTitle="Edit"
       />
     </Paper>
   );

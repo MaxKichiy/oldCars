@@ -25,10 +25,17 @@ const editItem = data => {
   };
 };
 
-export const fetchingProducts = () => async dispatch => {
+const addItem = data => {
+  return {
+    type: actionTypes.ADD_PRODUCT,
+    payload: data,
+  };
+};
+
+export const fetchingProducts = () => dispatch => {
   axios
     .get(baseURL + '/oldCars.json')
-    .then(({ data }) => dispatch(setProducts(data)))
+    .then(({ data }) => dispatch(setProducts(Object.values(data))))
     .catch(err => alert('Some erros'));
 };
 
@@ -36,16 +43,17 @@ export const deleteProduct = id => async dispatch => {
   const { data } = await axios.get(baseURL + `/oldCars.json?orderBy="_id"&equalTo="${id}"`);
   const objectKey = Object.keys(data)[0];
   const commentList = Object.values(data)[0].comments;
-  commentList.forEach(element => {
-    axios
-      .get(baseURL + `/oldCarsComments.json?orderBy="id"&equalTo="${element}"&print=pretty`)
-      .then(({ data }) => {
-        return axios.delete(baseURL + `/oldCarsComments/${Object.keys(data)[0]}.json`);
-      })
-      .then(response => axios.delete(baseURL + `/oldCars/${objectKey}.json`))
-      .then(response => dispatch(deleteItem(id)))
-      .catch(err => alert('Some erros'));
-  });
+  commentList &&
+    commentList.forEach(element => {
+      axios
+        .get(baseURL + `/oldCarsComments.json?orderBy="id"&equalTo="${element}"&print=pretty`)
+        .then(({ data }) => {
+          return axios.delete(baseURL + `/oldCarsComments/${Object.keys(data)[0]}.json`);
+        })
+        .then(response => axios.delete(baseURL + `/oldCars/${objectKey}.json`))
+        .then(response => dispatch(deleteItem(id)))
+        .catch(err => alert('Some erros'));
+    });
 };
 
 export const fetchEditProduct = newProduct => async dispatch => {
@@ -54,6 +62,15 @@ export const fetchEditProduct = newProduct => async dispatch => {
     .get(baseURL + `/oldCars.json?orderBy="_id"&equalTo="${newProduct._id}"`)
     .then(({ data }) => {
       return axios.put(baseURL + `oldCars/${Object.keys(data)[0]}.json`, newProduct);
+    })
+    .catch(err => alert('Some erros'));
+};
+
+export const fetchAddProduct = newProduct => async dispatch => {
+  axios
+    .post(baseURL + `/oldCars.json`, newProduct)
+    .then(({ data }) => {
+      dispatch(addItem(newProduct));
     })
     .catch(err => alert('Some erros'));
 };
