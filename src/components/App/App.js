@@ -10,37 +10,36 @@ import { fetchingProducts } from 'store/products/productsActions';
 
 import theme from 'theme';
 
-
-const App = () =>  {
-
+const App = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchingProducts())
-  }, [])
-  
-  const dispatch = useDispatch()
-  const state = useSelector(state => state.products)
+    dispatch(fetchingProducts());
+  }, [dispatch]);
 
-  const comments = useSelector(state => state.comments)
-  console.log("🚀 ~ file: App.js ~ line 18 ~ App ~ comments", comments)
+  const state = useSelector(state => state.products);
 
-  
-  if(!state){
-    return ( <Preloader/>)
+  const comments = useSelector(state => state.comments);
+
+  if (!state) {
+    return <Preloader />;
   }
-  
+
   return (
-    <ThemeProvider  theme={theme}>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
-    <div className="container">
-      <Header/>
-      <Switch>
-      <Route path="/products/:id" render={props => <ProductDetails {...props} comments={comments} products={state}/>}/>
-      <Route path="/" render={props => <Products products={state} {...props}/>}/>
-      </Switch>
-    </div>
-    </BrowserRouter>
+        <div className="container">
+          <Header />
+          <Switch>
+            <Route
+              path="/products/:id"
+              render={props => <ProductDetails {...props} comments={comments} products={state} />}
+            />
+            <Route path="/" render={props => <Products products={state} {...props} />} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     </ThemeProvider>
-  );   
-}
+  );
+};
 
 export default App;

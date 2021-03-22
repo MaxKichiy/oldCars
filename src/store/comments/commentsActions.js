@@ -2,57 +2,69 @@ import * as actionTypes from './commentsTypes';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
+const baseURL = 'https://dummy-hooks.firebaseio.com/';
 
-const baseURL = 'https://dummy-hooks.firebaseio.com/'
-
-const setComments = (data) => {
+const setComments = data => {
   return {
     type: actionTypes.SET_COMMENTS,
     payload: data,
-  }
-}
-const addComment = (data) => {
+  };
+};
+const addComment = data => {
   return {
     type: actionTypes.ADD_COMMENT,
     payload: data,
-  }
-}
+  };
+};
 
-const removeComment = (data) => {
+const removeComment = (id, prodId) => {
   return {
     type: actionTypes.DELETE_COMMENT,
-    payload: data,
-  }
-}
-
-export const fetchingComments = (id) => async (dispatch) => {
-  axios.get(baseURL + `/oldCarsComments.json?orderBy="productId"&equalTo="${id}"&print=pretty`).then(({data}) => {
-    dispatch(setComments(Object.values(data)))
-  })
-    .catch((err) => alert('Some erros'));
+    payload: { id, prodId },
+  };
 };
 
-export const fetchRemoveComment = (id) => async (dispatch) => {
-  axios.get(baseURL + `/oldCarsComments.json?orderBy="id"&equalTo="${id}"&print=pretty`).then(({data}) => {
-   return  axios.delete(baseURL + `/oldCarsComments/${Object.keys(data)[0]}.json`)
-  }).then((response)=> dispatch(removeComment(id))).catch(err =>  alert('Some erros'))
+export const fetchingComments = id => async dispatch => {
+  axios
+    .get(baseURL + `/oldCarsComments.json?orderBy="productId"&equalTo="${id}"&print=pretty`)
+    .then(({ data }) => {
+      dispatch(setComments(Object.values(data)));
+    })
+    .catch(err => alert('Some erros'));
 };
 
-export const addNewComment = (text, prodId) => async (dispatch) => {
+export const fetchRemoveComment = (id, prodId) => async dispatch => {
+  axios
+    .get(baseURL + `oldCarsComments.json?orderBy="id"&equalTo="${id}"&print=pretty`)
+    .then(({ data }) => axios.delete(baseURL + `oldCarsComments/${Object.keys(data)[0]}.json`))
+    .then(response => axios.get(baseURL + `oldCars.json?orderBy="_id"&equalTo="${prodId}"`))
+    .then(({ data }) => {
+      const newCommentList = Object.values(data)[0].comments.filter(comment => comment !== id);
+      return axios.put(baseURL + `oldCars/${Object.keys(data)[0]}/comments.json`, newCommentList);
+    })
+    .then(response => dispatch(removeComment(id, prodId)))
+    .catch(err => alert('Some erros'));
+};
+
+export const addNewComment = (text, prodId) => async dispatch => {
   const newComment = {
     date: new Date(),
-    description:text,
-    id:uuidv4(),
-    productId:prodId,
-  }
+    description: text,
+    id: uuidv4(),
+    productId: prodId,
+  };
 
-  axios.post(baseURL + `/oldCarsComments.json`, newComment).then((response) => 
-  dispatch(addComment(newComment)))
-    .catch((err) => alert('Some erros'));
-}
-
-// export const deleteProducts = () => async (dispatch) => {
-//   axios.get(baseURL + '/oldCars.json').then(({ data }) => dispatch(setProducts(data)))
-//     .catch((err) => alert('Some erros'));
-// };
-
+  return axios
+    .post(baseURL + `/oldCarsComments.json`, newComment)
+    .then(response => dispatch(addComment(newComment)))
+    .then(response =>
+      axios
+        .get(baseURL + `/oldCars.json?orderBy="_id"&equalTo="${prodId}"`)
+        .then(({ data }) => {
+          const newArr = [...Object.values(data)[0].comments, newComment.id];
+          // console.log(Object.values(data)[0].comments.length.toString());
+          return axios.put(baseURL + `oldCars/${Object.keys(data)[0]}/comments.json`, newArr);
+        })
+        .catch(err => alert('Some erros')),
+    );
+};
