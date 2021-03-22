@@ -1,21 +1,6 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  TextField,
-  Typography,
-} from '@material-ui/core';
-import moment from 'moment';
+import { FormControl, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import useStyles from './ProductForm.styled';
 import { v4 as uuidv4 } from 'uuid';
 import { Popup } from 'components/Popup';
@@ -80,7 +65,7 @@ const ProductForm = ({
       handleClose={onClose}
       handleSubmit={formHandler}
     >
-      <form>
+      <FormControl className={classes.form}>
         <TextField
           id="name"
           label="Name"
@@ -135,7 +120,7 @@ const ProductForm = ({
           onChange={e => setCount(e.target.value)}
           required
         />
-      </form>
+      </FormControl>
     </Popup>
   );
 };

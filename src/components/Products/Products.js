@@ -1,12 +1,10 @@
-import { FormControl, InputLabel, MenuItem, Paper, Select, Switch } from '@material-ui/core';
-import { useFetch } from 'api/useFetch';
+import { FormControl, InputLabel, MenuItem, Paper, Select } from '@material-ui/core';
 import { CardProduct } from 'components/CardProduct';
 import { Popup } from 'components/Popup';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setComments } from 'store/comments/commentsActions';
-import { deleteProduct, fetchingProducts } from 'store/products/productsActions';
-import { deleteItem } from 'store/products/productsActions';
+import { deleteProduct } from 'store/products/productsActions';
 
 import useStyles from './Products.styled';
 
@@ -20,8 +18,9 @@ const Products = ({ products }) => {
   const dispatch = useDispatch();
 
   const sortFucntion = (arr, type) => {
-    return products.sort((a, b) => (a[type] > b[type] ? 1 : b[type] > a[type] ? -1 : 0));
+    return arr.sort((a, b) => (a[type] > b[type] ? 1 : b[type] > a[type] ? -1 : 0));
   };
+
   sortFucntion(products, sortType);
 
   useEffect(() => {
@@ -31,10 +30,12 @@ const Products = ({ products }) => {
   const onSortHandle = event => {
     setSortType(event.target.value);
   };
+
   const handleDelete = () => {
     dispatch(deleteProduct(productIdToRemove));
     setIsPopupActive(false);
   };
+
   const handleRemovePopup = id => {
     console.log();
     setProductIdToRemove(id);
@@ -44,7 +45,6 @@ const Products = ({ products }) => {
   return (
     <Paper elevation={3} className={classes.productsContainer}>
       <FormControl className={classes.sortWrapper}>
-        {' '}
         <InputLabel id="sortSelector">Sort By</InputLabel>
         <Select
           labelId="sortSelector"

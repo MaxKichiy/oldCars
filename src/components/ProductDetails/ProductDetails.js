@@ -1,18 +1,5 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Button, CardMedia, List, ListItem, Paper, Typography } from '@material-ui/core';
 import { Comments } from 'components/Comments';
-import { Popup } from 'components/Popup';
 import { Preloader } from 'components/Preloader';
 import { ProductForm } from 'components/ProductForm';
 import React, { useEffect, useState } from 'react';

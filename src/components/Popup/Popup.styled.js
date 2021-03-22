@@ -4,9 +4,10 @@ export const useStyles = makeStyles(({ palette }) => ({
   dialogFrame: {
     backdropFilter: 'blur(3px)',
     '& .MuiPaper-root': {
-      backgroundColor:palette.header,
+      backgroundColor: '#A1A2A7',
       borderRadius: 0,
-      boxShadow: '0px 1px 2px rgba(0,0,0,0.5), 0px 1px 15px rgba(0,0,0,0.5), 0px 1px 15px rgba(0,0,0,0.5);',
+      boxShadow:
+        '0px 1px 2px rgba(0,0,0,0.5), 0px 1px 15px rgba(0,0,0,0.5), 0px 1px 15px rgba(0,0,0,0.5);',
     },
   },
   dialogTitle: {
@@ -18,7 +19,7 @@ export const useStyles = makeStyles(({ palette }) => ({
   wrapDialog: {
     background: palette.oxfordBlue,
     color: palette.white,
-    maxWidth: 300,
+    maxWidth: 500,
     padding: 40,
     textAlign: 'center',
   },

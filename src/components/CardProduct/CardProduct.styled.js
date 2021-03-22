@@ -16,6 +16,7 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
     padding: '5px 11px',
   },
   descriptionWrapper: {
+    height: 40,
     maxHeight: 40,
     overflow: 'hidden',
   },

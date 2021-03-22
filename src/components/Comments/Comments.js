@@ -1,20 +1,7 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  TextField,
-  Typography,
-} from '@material-ui/core';
+import { Button, List, ListItem, ListItemText, Paper, TextField } from '@material-ui/core';
 import { Preloader } from 'components/Preloader';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewComment, fetchRemoveComment } from 'store/comments/commentsActions';
 import useStyles from './Comments.styled';

@@ -3,7 +3,7 @@ import { Header } from 'components/Header';
 import { Preloader } from 'components/Preloader';
 import { ProductDetails } from 'components/ProductDetails';
 import { Products } from 'components/Products';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { fetchingProducts } from 'store/products/productsActions';
