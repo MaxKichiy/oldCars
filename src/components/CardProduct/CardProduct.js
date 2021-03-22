@@ -1,12 +1,4 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
 

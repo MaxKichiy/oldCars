@@ -1,5 +1,3 @@
-import { v4 as generateId } from 'uuid';
-
 import { SET_COMMENTS, ADD_COMMENT, DELETE_COMMENT } from './commentsTypes';
 
 const initialState = [];

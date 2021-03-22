@@ -24,7 +24,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(fetchingComments(currentId));
-  }, []);
+  }, [dispatch, currentId]);
 
   const comments = useSelector(state => state.comments);
 

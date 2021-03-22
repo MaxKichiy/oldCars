@@ -1,6 +1,5 @@
 import * as actionTypes from './productsTypes';
 import axios from 'axios';
-import { fetchRemoveComment } from 'store/comments/commentsActions';
 
 const baseURL = 'https://dummy-hooks.firebaseio.com/';
 

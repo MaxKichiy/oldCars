@@ -1,5 +1,3 @@
-import { v4 as generateId } from 'uuid';
-
 import { ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, SET_PRODUCTS } from './productsTypes';
 import { ADD_COMMENT, DELETE_COMMENT } from '../comments/commentsTypes';
 

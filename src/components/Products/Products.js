@@ -25,7 +25,7 @@ const Products = ({ products }) => {
 
   useEffect(() => {
     dispatch(setComments([]));
-  }, []);
+  }, [dispatch]);
 
   const onSortHandle = event => {
     setSortType(event.target.value);
