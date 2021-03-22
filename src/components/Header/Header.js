@@ -29,15 +29,8 @@ const Header = () => {
               Add new
             </Button>
           </li>
-          <Popup
-            title="New Product"
-            isOpen={isPopupActive}
-            primaryButtonTitle="Add"
-            handleClose={() => setIsPopupActive(false)}
-          >
-            <ProductForm />
-          </Popup>
         </ul>
+        <ProductForm isPopupActive />
       </div>
     </AppBar>
   );

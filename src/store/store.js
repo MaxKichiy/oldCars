@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 import thunk from 'redux-thunk';
 import { commentsReducer } from './comments/commentsReducer';
+import { commonReducer } from './common/commonReducer';
 import { productsReducer } from './products/productsReducer';
 
 const composeEnhancers =
@@ -11,10 +12,11 @@ const composeEnhancers =
 
 const store = createStore(
   combineReducers({
-    products:productsReducer,
-    comments:commentsReducer,
+    products: productsReducer,
+    comments: commentsReducer,
+    common: commonReducer,
   }),
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
-export default store
+export default store;

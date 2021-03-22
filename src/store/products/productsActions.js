@@ -25,13 +25,6 @@ const editItem = data => {
   };
 };
 
-// export const getContacts = (data) => {
-//   return {
-//     type: actionTypes.DELETE_PRODUCT,
-//     payload: data,
-//   }
-// }
-
 export const fetchingProducts = () => async dispatch => {
   axios
     .get(baseURL + '/oldCars.json')
@@ -55,6 +48,12 @@ export const deleteProduct = id => async dispatch => {
   });
 };
 
-export const fetchEditProduct = data => async dispatch => {
-  dispatch(editItem(data));
+export const fetchEditProduct = newProduct => async dispatch => {
+  dispatch(editItem(newProduct));
+  axios
+    .get(baseURL + `/oldCars.json?orderBy="_id"&equalTo="${newProduct._id}"`)
+    .then(({ data }) => {
+      return axios.put(baseURL + `oldCars/${Object.keys(data)[0]}.json`, newProduct);
+    })
+    .catch(err => alert('Some erros'));
 };

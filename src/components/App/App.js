@@ -12,13 +12,12 @@ import theme from 'theme';
 
 const App = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchingProducts());
   }, [dispatch]);
 
   const state = useSelector(state => state.products);
-
-  const comments = useSelector(state => state.comments);
 
   if (!state) {
     return <Preloader />;
@@ -32,7 +31,7 @@ const App = () => {
           <Switch>
             <Route
               path="/products/:id"
-              render={props => <ProductDetails {...props} comments={comments} products={state} />}
+              render={props => <ProductDetails {...props} products={state} />}
             />
             <Route path="/" render={props => <Products products={state} {...props} />} />
           </Switch>

@@ -16,7 +16,6 @@ import moment from 'moment';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addNewComment, fetchRemoveComment } from 'store/comments/commentsActions';
 import useStyles from './ProductForm.styled';
 import { v4 as uuidv4 } from 'uuid';
 import { Popup } from 'components/Popup';
@@ -60,6 +59,7 @@ const ProductForm = ({
         width: Number(width),
         height: Number(height),
       },
+      comments: comments || [],
     };
 
     dispatch(fetchEditProduct(newProduct));

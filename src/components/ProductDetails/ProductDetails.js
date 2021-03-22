@@ -23,7 +23,7 @@ import { fetchingComments } from 'store/comments/commentsActions';
 
 import useStyles from './ProductDetails.styled';
 
-const ProductDetails = ({ comments, products }) => {
+const ProductDetails = () => {
   const params = useParams();
   const currentId = params.id;
   const dispatch = useDispatch();
@@ -33,9 +33,14 @@ const ProductDetails = ({ comments, products }) => {
   const handleClosePopup = () => {
     setIsPopupActive(prev => !prev);
   };
+
+  const products = useSelector(state => state.products);
+
   useEffect(() => {
     dispatch(fetchingComments(currentId));
   }, []);
+
+  const comments = useSelector(state => state.comments);
 
   const currentProduct = products.filter(product => product._id === currentId)[0];
 
@@ -51,7 +56,7 @@ const ProductDetails = ({ comments, products }) => {
         image={currentProduct.imageUrl}
         title={currentProduct.name}
       />
-      <Comments comments={comments} />
+      <Comments comments={comments} productId={currentProduct._id} />
       <Paper elevation={0} className={classes.productDescription}>
         <Typography variant="h2">{currentProduct.name}</Typography>
         <Typography>Quantity - {currentProduct.count}</Typography>
@@ -75,6 +80,7 @@ const ProductDetails = ({ comments, products }) => {
         onClose={handleClosePopup}
         isPopupActive={isPopupActive}
         _id={currentProduct._id}
+        comments={currentProduct.comments}
       />
     </Paper>
   );
