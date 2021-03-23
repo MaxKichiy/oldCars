@@ -55,7 +55,7 @@ export const deleteProduct = id => async dispatch => {
     });
 };
 
-export const fetchEditProduct = newProduct => async dispatch => {
+export const fetchEditProduct = newProduct => dispatch => {
   dispatch(editItem(newProduct));
   axios
     .get(baseURL + `/oldCars.json?orderBy="_id"&equalTo="${newProduct._id}"`)
@@ -65,7 +65,7 @@ export const fetchEditProduct = newProduct => async dispatch => {
     .catch(err => alert('Some erros'));
 };
 
-export const fetchAddProduct = newProduct => async dispatch => {
+export const fetchAddProduct = newProduct => dispatch => {
   axios
     .post(baseURL + `/oldCars.json`, newProduct)
     .then(({ data }) => {

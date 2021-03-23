@@ -53,7 +53,7 @@ export const fetchRemoveComment = (id, prodId) => dispatch => {
     .catch(err => alert('Some erros'));
 };
 
-export const addNewComment = (text, prodId) => async dispatch => {
+export const addNewComment = (text, prodId) => dispatch => {
   const newComment = {
     date: new Date(),
     description: text,
